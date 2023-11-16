@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:week4/components/friendcard.dart';
+import 'package:week4/components/friendlist.dart';
+import 'package:week4/components/friendpost.dart';
 
 class Page1 extends StatefulWidget {
   const Page1({super.key});
@@ -27,6 +30,14 @@ class _Page1State extends State<Page1> {
     super.dispose();
   }
 
+  final txtstyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 18,
+  );
+  final txtNumstyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 18,
+  );
   @override
   Widget build(BuildContext context) {
     void caculate(val1, val2, type) {
@@ -49,91 +60,82 @@ class _Page1State extends State<Page1> {
       appBar: AppBar(
         title: const Text('Stateful page1'),
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                controller: textController1,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter value',
-                  prefixIcon: Icon(Icons.numbers),
+      body: ListView(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 60,
+                  backgroundImage: AssetImage('images/photo_male_2.jpg'),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              TextField(
-                controller: textController2,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter value',
-                  prefixIcon: Icon(Icons.numbers),
+                Text(
+                  'Mark Joseph',
+                  style: txtStyle,
                 ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50),
-                      backgroundColor: Colors.black),
-                  onPressed: () {
-                    caculate(int.parse(textController1.text),
-                        int.parse(textController2.text), 'add');
-                  },
-                  child: const Text('Add')),
-              const SizedBox(
-                height: 15,
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    backgroundColor: Colors.cyan,
+                Text('MarkJoseph@gmail.com'),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text('FOLLOWERS'),
+                    Text('POSTS'),
+                    Text('FOLLOWING'),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      '200',
+                      style: txtNumstyle,
+                    ),
+                    Text(
+                      '32',
+                      style: txtNumstyle,
+                    ),
+                    Text(
+                      '1.6k',
+                      style: txtNumstyle,
+                    ),
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Friends',
+                        style: txtStyle,
+                      ),
+                    ],
                   ),
-                  onPressed: () {
-                    caculate(int.parse(textController1.text),
-                        int.parse(textController2.text), 'subtract');
-                  },
-                  child: const Text('Subtract')),
-              const SizedBox(
-                height: 15,
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    backgroundColor: Colors.amberAccent,
+                ),
+                FriendList(),
+                FriendList(),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Posts',
+                        style: txtStyle,
+                      ),
+                    ],
                   ),
-                  onPressed: () {
-                    caculate(int.parse(textController1.text),
-                        int.parse(textController2.text), 'multiply');
-                  },
-                  child: const Text('Multiply')),
-              const SizedBox(
-                height: 15,
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                  ),
-                  onPressed: () {
-                    caculate(int.parse(textController1.text),
-                        int.parse(textController2.text), 'divide');
-                  },
-                  child: const Text('Devide')),
-              const SizedBox(
-                height: 15,
-              ),
-              Text(
-                'Value: $output',
-                style: txtStyle,
-              ),
-            ],
+                ),
+                FriendsPost(),
+                FriendsPost(),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

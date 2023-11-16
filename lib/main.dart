@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:week4/components/itemview.dart';
 import 'package:week4/pages/login.dart';
 import 'package:week4/pages/page1.dart';
 import 'package:week4/pages/registrationpage.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Week4',
-      home: Register(),
+      home: ItemView(),
     );
   }
 }
